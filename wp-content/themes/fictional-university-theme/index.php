@@ -1,11 +1,13 @@
 <?php  
-    function greet($name, $color) {
-        echo "<p>Hi, my name is $name and my favorite color is $color</p>";
+    $names = array('Jonathan', 'Leziel', 'Jonah'); 
+
+
+    $index = 0; 
+
+    while($index < count($names)) {
+        echo "<li>Hi, my name is $names[$index]</li>";
+        $index++;
     }
 
-    greet('Jon', 'blue');
-    greet('Jane', 'purple');
 ?>
 
-<h1><?php bloginfo('name'); ?></h1>
-<p><?php bloginfo('description'); ?></p>
