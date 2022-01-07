@@ -1,1 +1,5 @@
-<p>Greetings from Footer.php</p>
+By Jonathan Deleon
+
+    <?php wp_footer(); ?>
+    </body>
+</html>
