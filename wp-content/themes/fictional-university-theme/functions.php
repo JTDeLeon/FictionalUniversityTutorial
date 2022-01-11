@@ -18,6 +18,11 @@ function university_features() {
     // There are other wp features to use too! 
     // This support adds the title dynamically to the title tag of the page 
     add_theme_support('title-tag');
+
+    // Adds Menus To The WP Admin Menu Support! Needs this to work. 
+    register_nav_menu('main-menu', 'Main Menu in Header');
+    register_nav_menu('footer-explore-menu', 'Explore Menu in Footer');
+    register_nav_menu('footer-learn-menu', 'Learn Menu in Footer');
 }
 
 // Hook Name Matters Here 
