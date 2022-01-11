@@ -23,7 +23,8 @@
     ?>
     </h1>
     <div class="page-banner__intro">
-        <p>Keep up with the latest news</p>
+      <!-- Adds the category/user description/biography to the page -->
+        <p><?php the_archive_description(); ?></p>
     </div>
     </div>
 </div>
