@@ -36,6 +36,8 @@
 
             <?php 
         }
+        // Pagination
+        echo paginate_links();
      ?>
 
 </div>
