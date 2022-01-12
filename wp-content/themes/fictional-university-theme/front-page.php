@@ -20,33 +20,42 @@
       </div>
     </div>
 
+    <!-- Be sure to update the permalinks once you create a new post type! -->
+    <!-- Events Section -->
     <div class="full-width-split group">
       <div class="full-width-split__one">
         <div class="full-width-split__inner">
           <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
+          <?php  
+          // Create custom query for the events post type
+            $eventsHomepage = new WP_Query(array(
+              'posts_per_page' => 2,
+              // Designates the post type! 
+              'post_type' => 'event',
+            )); 
+            
+            // Loop through the customer query data
+            while($eventsHomepage->have_posts()){
+              // Access the data for the post
+              $eventsHomepage->the_post();
+              ?>
+                <div class="event-summary">
+                  <a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
+                    <span class="event-summary__month"><?php the_time('M') ?></span>
+                    <span class="event-summary__day"><?php the_time('d') ?></span>
+                  </a>
+                  <div class="event-summary__content">
+                    <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+                    <p><?php echo wp_trim_words(get_the_content(), 18) ?><a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a></p>
+                  </div>
+                </div>
+            <?php
+            }
+            // Reset the query data - best practice
+            wp_reset_postdata();
+          ?>
 
-          <div class="event-summary">
-            <a class="event-summary__date t-center" href="#">
-              <span class="event-summary__month">Mar</span>
-              <span class="event-summary__day">25</span>
-            </a>
-            <div class="event-summary__content">
-              <h5 class="event-summary__title headline headline--tiny"><a href="#">Poetry in the 100</a></h5>
-              <p>Bring poems you&rsquo;ve wrote to the 100 building this Tuesday for an open mic and snacks. <a href="#" class="nu gray">Learn more</a></p>
-            </div>
-          </div>
-          <div class="event-summary">
-            <a class="event-summary__date t-center" href="#">
-              <span class="event-summary__month">Apr</span>
-              <span class="event-summary__day">02</span>
-            </a>
-            <div class="event-summary__content">
-              <h5 class="event-summary__title headline headline--tiny"><a href="#">Quad Picnic Party</a></h5>
-              <p>Live music, a taco truck and more can found in our third annual quad picnic day. <a href="#" class="nu gray">Learn more</a></p>
-            </div>
-          </div>
-
-          <p class="t-center no-margin"><a href="#" class="btn btn--blue">View All Events</a></p>
+          <p class="t-center no-margin"><a href="<?php echo site_url('events'); ?>" class="btn btn--blue">View All Events</a></p>
         </div>
       </div>
 

@@ -5,8 +5,13 @@
 function university_post_types() {
     // Registers post type 1: Name of Custom Post Type 2: Array of options to describe post type
     register_post_type('event', array(
+        'rewrite' => array('slug' => 'events'),
         // Make the post type show up in the admin section
         'public' => true,
+        // To use MODERN UI/UX of the WP Admin
+        'show_in_rest' => true,
+        // Sets archive support
+        'has_archive' => true,
         // Describe and label the new post type
         'labels' => array(
             // Names the main post type
@@ -18,7 +23,8 @@ function university_post_types() {
             // Updates the Sub title for "events" to equal whatever like "All Events"
             'all_items' => 'All Events',
             // Label for a singular version of events
-            'singular_name' => 'Event'
+            'singular_name' => 'Event',
+            
         ),
         // This sets the icon for the new post type
         // https://developer.wordpress.org/resource/dashicons/#arrow-right-alt2
@@ -29,3 +35,5 @@ function university_post_types() {
 
 // Post Type Action/Hook
 add_action('init', 'university_post_types');
+
+// Be sure to update the wp settings permalink structure! 
