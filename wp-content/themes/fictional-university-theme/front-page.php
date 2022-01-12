@@ -27,11 +27,34 @@
         <div class="full-width-split__inner">
           <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
           <?php  
+          // Grab todays date to use below
+            $today = date('YMd');
           // Create custom query for the events post type
             $eventsHomepage = new WP_Query(array(
-              'posts_per_page' => 2,
+              // set to -1 to give all posts that meet the conditions!
+              'posts_per_page' => -1,
               // Designates the post type! 
               'post_type' => 'event',
+              // Order the custom query
+              'orderby' => 'meta_value',
+              // If set to meta_value, this is required
+              // Set this to equal to the field key that we want to use to sort by
+              'meta_key' => 'event_date',
+              // Default set to DESC, can change to ASC to opposite experience
+              'order' => 'ASC',
+              // Avoid past queries or things that are beyond past current date
+              'meta_query' => array(
+                array(
+                  // Only give us posts IF the key 
+                  'key' => 'event_date',
+                  // Is conditional (greater or equal to)
+                  'compare' => '>=',
+                  // The value for the conditional. Today
+                  'value' => $today,
+                  // Type of comparison
+                  'type' => 'numeric'
+                )
+              ),
             )); 
             
             // Loop through the customer query data
@@ -41,8 +64,15 @@
               ?>
                 <div class="event-summary">
                   <a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
-                    <span class="event-summary__month"><?php the_time('M') ?></span>
-                    <span class="event-summary__day"><?php the_time('d') ?></span>
+                    <span class="event-summary__month"><?php
+                      // Get the field data and put it in a object of DateTime 
+                      $eventDate = new DateTime(get_field('event_date'));
+                      // Format the date
+                      echo $eventDate -> format('M');
+                      
+                    ?></span>
+                    <!-- Can use the previous used variable to access the data since it's in the same while loop -->
+                    <span class="event-summary__day"><?php echo $eventDate -> format('d'); ?></span>
                   </a>
                   <div class="event-summary__content">
                     <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
