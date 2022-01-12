@@ -84,8 +84,22 @@
                   </a>
                   <div class="event-summary__content">
                     <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                    <!-- Limited word excerpts 1: Content you want to limit 2: words to limit to -->
-                    <p><?php echo wp_trim_words(get_the_content(), 18); ?><a href="<?php the_permalink(); ?>" class="nu gray">Read more</a></p>
+                    
+                    <p>
+                      <?php 
+                      // Limited word excerpts 1: Content you want to limit 2: words to limit to
+                      // echo wp_trim_words(get_the_content(), 18); 
+
+                      // Pulls in the optionally set excerpt put by the author.
+                      // If the post has an excerpt
+                      if(has_excerpt()){
+                        the_excerpt();  
+                      } else {
+                        echo wp_trim_words(get_the_content(), 18);
+                      }
+                      ?>
+                      
+                      <a href="<?php the_permalink(); ?>" class="nu gray">Read more</a></p>
                   </div>
                 </div>
               <?php
