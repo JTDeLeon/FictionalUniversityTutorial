@@ -37,7 +37,8 @@
               <li><a href="#">Programs</a></li>
               <li><a href="#">Events</a></li>
               <li><a href="#">Campuses</a></li>
-              <li <?php if(is_page('blog') or wp_get_post_parent_id(0) == 39) echo 'class="current-menu-item"'; ?>><a href="<?php echo site_url('/blog') ?>">Blog</a></li>
+              <!-- Related to the blog by looking for post type post -->
+              <li <?php if(get_post_type() == 'post') echo 'class="current-menu-item"'; ?>><a href="<?php echo site_url('/blog') ?>">Blog</a></li>
             </ul>
           </nav>
           <div class="site-header__util">
