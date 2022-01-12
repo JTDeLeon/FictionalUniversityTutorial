@@ -27,3 +27,4 @@ function university_features() {
 
 // Hook Name Matters Here 
 add_action('after_setup_theme', 'university_features');
+
