@@ -20,7 +20,7 @@
         <div class="metabox metabox--position-up metabox--with-home-link">
             <p>
                 <!-- get a link to get a post type archive link (home for post type) -->
-                <a class="metabox__blog-home-link" href="<?php get_post_type_archive_link('event'); ?>"><i class="fa fa-home" aria-hidden="true"></i> Back to Events Home</a> <span class="metabox__main"><?php the_title(); ?></span>
+                <a class="metabox__blog-home-link" href="<?php echo get_post_type_archive_link('event'); ?>"><i class="fa fa-home" aria-hidden="true"></i> Back to Events Home</a> <span class="metabox__main"><?php the_title(); ?></span>
             </p>
         </div>
         

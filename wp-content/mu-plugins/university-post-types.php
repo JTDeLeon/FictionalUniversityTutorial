@@ -5,6 +5,8 @@
 function university_post_types() {
     // Registers post type 1: Name of Custom Post Type 2: Array of options to describe post type
     register_post_type('event', array(
+        // Enable Excerpts Support + other fields such as editor and title
+        'supports' => array('excerpt', 'title', 'editor'),
         'rewrite' => array('slug' => 'events'),
         // Make the post type show up in the admin section
         'public' => true,
